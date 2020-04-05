@@ -15,7 +15,7 @@ __metaclass__ = type
 import re
 from copy import deepcopy
 
-from ansible.module_utils.network.common import utils
+from ansible_collections.ansible.netcommon.plugins.module_utils.network.common import utils
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.argspec.vlans.vlans import VlansArgs
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.exos import send_requests
 

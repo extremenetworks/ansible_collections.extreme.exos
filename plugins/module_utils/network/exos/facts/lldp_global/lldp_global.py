@@ -15,7 +15,7 @@ __metaclass__ = type
 import re
 from copy import deepcopy
 
-from ansible.module_utils.network.common import utils
+from ansible_collections.ansible.netcommon.plugins.module_utils.network.common import utils
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.argspec.lldp_global.lldp_global \
     import Lldp_globalArgs
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.exos import send_requests

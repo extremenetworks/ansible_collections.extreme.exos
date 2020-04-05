@@ -15,7 +15,7 @@ __metaclass__ = type
 import re
 from copy import deepcopy
 
-from ansible.module_utils.network.common import utils
+from ansible_collections.ansible.netcommon.plugins.module_utils.network.common import utils
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.argspec.l2_interfaces.l2_interfaces import L2_interfacesArgs
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.exos import send_requests
 
