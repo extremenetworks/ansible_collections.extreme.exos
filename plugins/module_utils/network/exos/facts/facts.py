@@ -19,6 +19,7 @@ from ansible_collections.extreme.exos.plugins.module_utils.network.exos.facts.le
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.facts.lldp_interfaces.lldp_interfaces import Lldp_interfacesFacts
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.facts.l2_interfaces.l2_interfaces import L2_interfacesFacts
 from ansible_collections.extreme.exos.plugins.module_utils.network.exos.facts.interfaces.interfaces import InterfacesFacts
+from ansible_collections.extreme.exos.plugins.module_utils.network.exos.facts.guest_virtual_machines.guest_virtual_machines import Guest_virtual_machinesFacts
 
 FACT_LEGACY_SUBSETS = dict(
     default=Default,
@@ -32,6 +33,7 @@ FACT_RESOURCE_SUBSETS = dict(
     lldp_interfaces=Lldp_interfacesFacts,
     l2_interfaces=L2_interfacesFacts,
     interfaces=InterfacesFacts,
+    guest_virtual_machines=Guest_virtual_machinesFacts,
 )
 
 
