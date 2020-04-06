@@ -24,7 +24,7 @@ import json
 from ansible_collections.extreme.exos.tests.unit.compat.mock import patch
 from ansible_collections.extreme.exos.tests.unit.modules.utils import set_module_args
 from ansible_collections.extreme.exos.plugins.modules import exos_command
-from ..exos_module import TestExosModule, load_fixture
+from .exos_module import TestExosModule, load_fixture
 
 
 class TestExosCommandModule(TestExosModule):

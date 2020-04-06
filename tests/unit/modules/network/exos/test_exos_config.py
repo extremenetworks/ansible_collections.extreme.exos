@@ -23,7 +23,7 @@ from ansible_collections.extreme.exos.tests.unit.compat.mock import patch, Magic
 from ansible_collections.extreme.exos.tests.unit.modules.utils import set_module_args
 from ansible_collections.extreme.exos.plugins.cliconf.exos import Cliconf
 from ansible_collections.extreme.exos.plugins.modules import exos_config
-from ..exos_module import TestExosModule, load_fixture
+from .exos_module import TestExosModule, load_fixture
 
 
 class TestExosConfigModule(TestExosModule):
