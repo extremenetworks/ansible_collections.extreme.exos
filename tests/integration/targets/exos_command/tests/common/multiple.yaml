@@ -2,7 +2,7 @@
 - debug: msg="START common/multiple.yaml on connection={{ ansible_connection }}"
 
 - name: run multiple commands on remote nodes
-  exos_command:
+  extreme.exos.exos_command:
     commands:
       - show version
       - show ports no-refresh

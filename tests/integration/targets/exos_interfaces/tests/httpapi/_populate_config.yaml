@@ -1,6 +1,6 @@
 ---
 - name: Populate config
-  exos_config:
+  extreme.exos.exos_config:
     lines:
       - configure ports 1 description-string Port1
       - disable ports 1

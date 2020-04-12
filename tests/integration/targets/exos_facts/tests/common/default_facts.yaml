@@ -3,7 +3,7 @@
 
 
 - name: test getting default facts
-  exos_facts:
+  extreme.exos.exos_facts:
   register: result
 
 - assert:

@@ -8,7 +8,7 @@
 
 - block:
   - name: Merge the provided configuration with the existing running configuration
-    exos_vlans: &merged
+    extreme.exos.exos_vlans: &merged
       config:
         - name: vlan_30
           vlan_id: 30
@@ -21,11 +21,11 @@
 
   - name: Assert that before dicts were correctly generated
     assert:
-      that: 
+      that:
         - "{{ initial_state == result['before'] }}"
 
   - name: Assert that correct set of requests were generated
-    assert: 
+    assert:
       that:
         - "{{ merged['requests'] == result['requests'] }}"
 
@@ -35,7 +35,7 @@
         - "{{ merged['after'] == result['after'] }}"
 
   - name: Merge the provided configuration with the existing configuration (IDEMPOTENT)
-    exos_vlans: *merged
+    extreme.exos.exos_vlans: *merged
     register: result
 
   - name: Assert that the previous task was idempotent
@@ -43,7 +43,7 @@
       that:
         - "result.changed == false"
 
-  - name: Assert that before dict was correctly generated 
+  - name: Assert that before dict was correctly generated
     assert:
       that:
         - "{{ merged['after'] == result['before'] }}"

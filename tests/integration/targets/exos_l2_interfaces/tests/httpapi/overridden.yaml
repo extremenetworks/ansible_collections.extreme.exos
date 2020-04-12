@@ -26,12 +26,12 @@
         name: '3'
         trunk: null
 
-- exos_facts:
+- extreme.exos.exos_facts:
     gather_network_resources: l2_interfaces
 
 - block:
   - name: Override device L2 interface configuration with provided configurations
-    exos_l2_interfaces: &overridden
+    extreme.exos.exos_l2_interfaces: &overridden
       config: "{{ config }}"
       state: overridden
     register: result
@@ -42,7 +42,7 @@
         - "overridden['requests']|symmetric_difference(result['requests']) == []"
         - "ansible_facts.network_resources.l2_interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -58,7 +58,7 @@
         - "expected_config|difference(ansible_facts.network_resources.l2_interfaces) == []"
 
   - name: Override device LLDP interface configuration with provided configurations (IDEMPOTENT)
-    exos_l2_interfaces: *overridden
+    extreme.exos.exos_l2_interfaces: *overridden
     register: result
 
   - name: Assert that task was idempotent
@@ -66,7 +66,7 @@
       that:
           - "result['changed'] == false"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that the before dicts were correctly generated

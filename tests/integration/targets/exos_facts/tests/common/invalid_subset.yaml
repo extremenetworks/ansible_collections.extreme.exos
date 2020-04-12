@@ -3,7 +3,7 @@
 
 
 - name: test invalid subset (foobar)
-  exos_facts:
+  extreme.exos.exos_facts:
     gather_subset:
       - "foobar"
   register: result
@@ -20,7 +20,7 @@
       - "result.msg == 'Subset must be one of [config, default, hardware, interfaces], got foobar'"
 
 - name: test subset specified multiple times
-  exos_facts:
+  extreme.exos.exos_facts:
     gather_subset:
       - "!hardware"
       - "hardware"

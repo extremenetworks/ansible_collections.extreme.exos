@@ -8,7 +8,7 @@
 
 - block:
   - name: Replace device configurations of LLDP service with provided configurations
-    exos_lldp_global: &replaced
+    extreme.exos.exos_lldp_global: &replaced
       config:
         interval: 20
         tlv_select:
@@ -36,7 +36,7 @@
           - "{{ replaced['after'] == result['after'] }}"
 
   - name: Replace device configurations of LLDP service with provided configurations (IDEMPOTENT)
-    exos_lldp_global: *replaced
+    extreme.exos.exos_lldp_global: *replaced
     register: result
 
   - name: Assert that task was idempotent

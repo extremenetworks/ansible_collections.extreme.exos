@@ -3,7 +3,7 @@
 
 
 - name: test not hardware
-  exos_facts:
+  extreme.exos.exos_facts:
     gather_subset:
       - "!hardware"
   register: result

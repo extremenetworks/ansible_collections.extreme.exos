@@ -2,7 +2,7 @@
 - debug: msg="START common/prompt.yaml on connection={{ ansible_connection }}"
 
 - name: run command that requires answering a prompt
-  exos_command:
+  extreme.exos.exos_command:
     commands:
       - command: 'clear license-info'
         prompt: 'Are you sure.*'

@@ -39,12 +39,12 @@
         name: '4'
         speed: 'SPEED_5GB'
 
-- exos_facts:
+- extreme.exos.exos_facts:
     gather_network_resources: interfaces
 
 - block:
   - name: Merge the given interface configuration
-    exos_interfaces: &merged
+    extreme.exos.exos_interfaces: &merged
       config: "{{ config }}"
       state: merged
     register: result
@@ -56,7 +56,7 @@
         - "merged['commands']|symmetric_difference(result['commands']) == []"
         - "ansible_facts.network_resources.interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -66,7 +66,7 @@
         - "config|difference(ansible_facts.network_resources.interfaces) == []"
 
   - name: Merge attributes for given interfaces (IDEMPOTENT)
-    exos_interfaces: *merged
+    extreme.exos.exos_interfaces: *merged
     register: result
 
   - name: Assert that the previous task was idempotent
@@ -74,7 +74,7 @@
       that:
         - "result.changed == false"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: interfaces
 
   - name: Assert that the before dicts were correctly generated
@@ -84,7 +84,7 @@
         - "config|difference(ansible_facts.network_resources.interfaces) == []"
 
   - name: Merge given interface configuration
-    exos_interfaces: 
+    extreme.exos.exos_interfaces:
       config: "{{ invalid_config }}"
       state: merged
     register: result

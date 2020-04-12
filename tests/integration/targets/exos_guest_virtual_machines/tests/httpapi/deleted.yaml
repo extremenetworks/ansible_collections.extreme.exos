@@ -1,5 +1,5 @@
 ---
-- debug: 
+- debug:
     msg: "Start exos_guest_virtual_machines deleted integration tests ansible_connection={{ ansible_connection }}"
 
 - include_tasks: _reset_config.yaml
@@ -8,7 +8,7 @@
 
 - block:
   - name: Delete the given virtual machines
-    exos_guest_virtual_machines:
+    extreme.exos.exos_guest_virtual_machines:
       config:
         - name: 'vm_1'
       state: deleted
@@ -21,7 +21,7 @@
 
   - name: Assert that correct set of requests were generated
     assert:
-      that: 
+      that:
         - "{{ deleted['requests_1'] == result['requests'] }}"
 
   - name: Assert that the after dicts were correctly generated
@@ -30,7 +30,7 @@
         - "{{ deleted['after'] == result['after'] }}"
 
   - name: Delete virtual machines
-    exos_guest_virtual_machines: &deleted 
+    extreme.exos.exos_guest_virtual_machines: &deleted
       config:
       state: deleted
     register: result
@@ -44,14 +44,14 @@
     assert:
       that:
         - "{{ deleted['requests_2'] == result['requests'] }}"
-  
+
   - name: Assert that the after dicts were correctly generated
     assert:
       that:
         - "{{ result['after'] == [] }}"
 
   - name: Delete virtual machines (IDEMPOTENT)
-    exos_guest_virtual_machines: *deleted
+    extreme.exos.exos_guest_virtual_machines: *deleted
     register: result
 
   - name: Assert that the previous task was idempotent

@@ -1,6 +1,6 @@
 ---
 - name: Populate Config
-  exos_config:
+  extreme.exos.exos_config:
     lines:
       - configure lldp transmit-interval 50
       - configure lldp ports all no-advertise all-tlvs

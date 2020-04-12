@@ -17,7 +17,7 @@
         name: '2'
         trunk:
           native_vlan: 10
-          trunk_allowed_vlans: 
+          trunk_allowed_vlans:
             - 20
             - 30
     invalid_config:
@@ -27,12 +27,12 @@
           trunk_allowed_vlans:
             - 50
 
-- exos_facts:
+- extreme.exos.exos_facts:
     gather_network_resources: l2_interfaces
 
 - block:
   - name: Merge the provided configuration with the existing running configuration
-    exos_l2_interfaces: &merged
+    extreme.exos.exos_l2_interfaces: &merged
       config: "{{ config }}"
       state: merged
     register: result
@@ -43,7 +43,7 @@
         - "merged['requests']|symmetric_difference(result['requests']) == []"
         - "ansible_facts.network_resources.l2_interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -53,7 +53,7 @@
         - "config|difference(ansible_facts.network_resources.l2_interfaces) == []"
 
   - name: Merge the provided configuration with the existing running configuration (IDEMPOTENT)
-    exos_l2_interfaces: *merged
+    extreme.exos.exos_l2_interfaces: *merged
     register: result
 
   - name: Assert that the previous task was idempotent
@@ -61,7 +61,7 @@
       that:
         - "result['changed'] == false"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that the before dicts were correctly generated
@@ -71,7 +71,7 @@
         - "config|difference(ansible_facts.network_resources.l2_interfaces) == []"
 
   - name: Merge provided configuration with existing configuration
-    exos_l2_interfaces:
+    extreme.exos.exos_l2_interfaces:
       config: "{{ invalid_config }}"
       state: merged
     register: result

@@ -1,5 +1,5 @@
 ---
-- debug: 
+- debug:
     msg: "Start exos_guest_virtual_machines replaced integration tests ansible_connection={{ ansible_connection }}"
 
 - include_tasks: _reset_config.yaml
@@ -8,7 +8,7 @@
 
 - block:
   - name: Replace existing configuration with provided configuration
-    exos_guest_virtual_machines: &replaced
+    extreme.exos.exos_guest_virtual_machines: &replaced
       config:
         - name: vm_2
           num_cores: 1
@@ -36,7 +36,7 @@
       that:
         - "{{ replaced['after'] == result['after'] }}"
   - name: Replace existing configuration with provided configuration (IDEMPOTENT)
-    exos_guest_virtual_machines: *replaced
+    extreme.exos.exos_guest_virtual_machines: *replaced
     register: result
 
   - name: Assert that task was idempotent

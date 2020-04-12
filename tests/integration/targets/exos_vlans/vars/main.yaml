@@ -12,7 +12,7 @@ initial_state:
 
 merged:
   requests:
-    - data: '{"openconfig-vlan:vlans": [{"config": {"status": "ACTIVE", "vlan-id": 30, "name": "vlan_30", "tpid": "oc-vlan-types:TPID_0x8100"}}]}' 
+    - data: '{"openconfig-vlan:vlans": [{"config": {"status": "ACTIVE", "vlan-id": 30, "name": "vlan_30", "tpid": "oc-vlan-types:TPID_0x8100"}}]}'
       method: POST
       path: /rest/restconf/data/openconfig-vlan:vlans/
     - data: '{"openconfig-vlan:vlans": {"vlan": [{"config": {"status": "SUSPENDED", "vlan-id": 10, "name": "vlan_10", "tpid": "oc-vlan-types:TPID_0x8100"}}]}}'

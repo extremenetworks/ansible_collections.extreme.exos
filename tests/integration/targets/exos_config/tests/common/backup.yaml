@@ -2,7 +2,7 @@
 - debug: msg="START common/backup.yaml on connection={{ ansible_connection }}"
 
 - name: configure vlan
-  exos_config:
+  extreme.exos.exos_config:
     lines:
       - create vlan 100
     backup: yes
@@ -24,12 +24,12 @@
     state: absent
 
 - name: Restore original configuration
-  exos_config:
+  extreme.exos.exos_config:
     lines:
       - delete vlan 100
 
 - name: Save the configuration to startup
-  exos_config:
+  extreme.exos.exos_config:
     save_when: modified
 
 - debug: msg="END common/backup.yaml on connection={{ ansible_connection }}"

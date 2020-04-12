@@ -2,7 +2,7 @@
 - debug:
     msg: "START common/basic.yaml on connection={{ ansible_connection }}"
 - name: Collect facts
-  exos_facts:
+  extreme.exos.exos_facts:
     gather_subset: all
   register: result
 
@@ -12,7 +12,7 @@
     that:
       # _facts modules should never report a change
       - "result.changed == false"
-  
+
       # Correct subsets are present
       - "'config' in result.ansible_facts.ansible_net_gather_subset"
       - "'hardware' in result.ansible_facts.ansible_net_gather_subset"

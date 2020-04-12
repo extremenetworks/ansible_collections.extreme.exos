@@ -18,12 +18,12 @@
       - enabled: true
         name: '5'
 
-- exos_facts:
+- extreme.exos.exos_facts:
     gather_network_resources: lldp_interfaces
 
 - block:
   - name: Delete LLDP interface configuration
-    exos_lldp_interfaces: &deleted
+    extreme.exos.exos_lldp_interfaces: &deleted
       config:
         - name: '2'
         - name: '3'
@@ -36,7 +36,7 @@
         - "deleted['requests_1']|symmetric_difference(result['requests']) == []"
         - "ansible_facts.network_resources.lldp_interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: lldp_interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -46,7 +46,7 @@
         - "config|difference(ansible_facts.network_resources.lldp_interfaces) == []"
 
   - name: Delete LLDP interface configuration
-    exos_lldp_interfaces: 
+    extreme.exos.exos_lldp_interfaces:
       config:
       state: deleted
     register: result
@@ -57,7 +57,7 @@
         - "deleted['requests_2']|symmetric_difference(result['requests']) == []"
         - "ansible_facts.network_resources.lldp_interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: lldp_interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -67,7 +67,7 @@
         - "config_all|difference(ansible_facts.network_resources.lldp_interfaces) == []"
 
   - name: Delete attributes of all configured interfaces (IDEMPOTENT)
-    exos_lldp_interfaces: *deleted
+    extreme.exos.exos_lldp_interfaces: *deleted
     register: result
 
   - name: Assert that the previous task was idempotent
@@ -75,7 +75,7 @@
       that:
         - "result.changed == false"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: lldp_interfaces
 
   - name: Assert that the before dicts were correctly generated

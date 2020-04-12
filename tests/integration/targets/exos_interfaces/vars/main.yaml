@@ -9,12 +9,12 @@ deleted:
     - data: '{"openconfig-interfaces:config": {"enabled": true}}'
       method: PATCH
       path: /rest/restconf/data/openconfig-interfaces:interfaces/interface=1/config
-  
+
   commands_1:
     - "unconfigure ports 2 description-string"
     - "configure ports 2 auto on"
     - "configure ports 3 auto on"
-  
+
   commands_2:
     - "unconfigure ports 1 description-string"
     - "disable jumbo-frame ports 1"

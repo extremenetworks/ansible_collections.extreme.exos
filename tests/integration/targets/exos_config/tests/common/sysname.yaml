@@ -2,21 +2,21 @@
 - debug: msg="START common/sysname.yaml"
 
 - name: Get intial SysName
-  exos_command:
+  extreme.exos.exos_command:
     commands: show switch | grep SysName
   register: sysname_init
 
 - name: configure SNMP system name
-  exos_config:
+  extreme.exos.exos_config:
     lines: configure snmp sysName "{{ inventory_hostname }}"
   register: result
 - assert:
-    that: 
+    that:
       - "result.commands[0] is search('configure')"
       - "result.changed == True"
 
 - name: Idempotency of SNMP system name configuration
-  exos_config:
+  extreme.exos.exos_config:
     lines: configure snmp sysName "{{ inventory_hostname }}"
   register: result
 - assert:
@@ -25,11 +25,11 @@
 - set_fact: old_sysname='{{ sysname_init.stdout[0] | regex_search('([^\s]+$)')  }}'
 
 - name: Restore inital sysName
-  exos_config: 
+  extreme.exos.exos_config:
     lines: 'configure snmp sysName {{ old_sysname }}'
 
 - name: Save the configuration to startup
-  exos_config:
+  extreme.exos.exos_config:
     save_when: modified
 
 - debug: msg="END common/sysname.yaml"

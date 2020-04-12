@@ -8,7 +8,7 @@
 
 - block:
   - name: Delete attributes of LLDP service
-    exos_lldp_global: &deleted
+    extreme.exos.exos_lldp_global: &deleted
       config:
       state: deleted
     register: result
@@ -31,7 +31,7 @@
         - "{{ deleted['after'] == result['after']}}"
 
   - name: Delete attributes of all configured interfaces (IDEMPOTENT)
-    exos_lldp_global: *deleted
+    extreme.exos.exos_lldp_global: *deleted
     register: result
 
   - name: Assert that the previous task was idempotent

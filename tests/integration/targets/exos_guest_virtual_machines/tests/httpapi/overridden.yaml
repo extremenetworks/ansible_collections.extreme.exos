@@ -8,7 +8,7 @@
 
 - block:
     - name: Override existing configuration with the provided configuration
-      exos_guest_virtual_machines: &overridden
+      extreme.exos.exos_guest_virtual_machines: &overridden
         config:
           - name: vm_2
             memory_size: 4096
@@ -40,7 +40,7 @@
           - "{{ overridden['after'] == result['after'] }}"
 
     - name: Override existing configuration with the provided configuration (IDEMPOTENT)
-      exos_guest_virtual_machines: *overridden
+      extreme.exos.exos_guest_virtual_machines: *overridden
       register: result
 
     - name: Assert that task was idempotent

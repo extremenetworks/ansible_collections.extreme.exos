@@ -2,7 +2,7 @@
 - debug: msg="START common/single.yaml on connection={{ ansible_connection }}"
 
 - name: run show version on remote devices
-  exos_command:
+  extreme.exos.exos_command:
     commands: show version
   register: result
 

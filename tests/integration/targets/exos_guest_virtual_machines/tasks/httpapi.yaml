@@ -1,7 +1,7 @@
 ---
-- name: Collect all httpapi test cases
+- name: Collect all ansible.netcommon.httpapi test cases
   find:
-    paths: "{{ role_path }}/tests/httpapi"
+    paths: "{{ role_path }}/tests/ansible.netcommon.httpapi"
     patterns: "{{ testcase }}.yaml"
     use_regex: true
   register: test_cases
@@ -10,10 +10,10 @@
 - name: Set test_items
   set_fact: test_items="{{ test_cases.files | map(attribute='path') | list }}"
 
-- name: Run test case (connection=httpapi)
+- name: Run test case (connection=ansible.netcommon.httpapi)
   include: "{{ test_case_to_run }}"
   vars:
-    ansible_connection: httpapi
+    ansible_connection: ansible.netcommon.httpapi
   with_items: "{{ test_items }}"
   loop_control:
     loop_var: test_case_to_run

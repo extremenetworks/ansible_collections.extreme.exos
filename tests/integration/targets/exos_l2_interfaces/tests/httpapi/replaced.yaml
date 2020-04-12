@@ -19,12 +19,12 @@
         name: '3'
         trunk: null
 
-- exos_facts:
+- extreme.exos.exos_facts:
     gather_network_resources: l2_interfaces
 
 - block:
   - name: Replace L2 interface configuration with provided configuration
-    exos_l2_interfaces: &replaced
+    extreme.exos.exos_l2_interfaces: &replaced
       config: "{{ config }}"
       state: replaced
     register: result
@@ -35,7 +35,7 @@
         - "replaced['requests']|symmetric_difference(result['requests']) == []"
         - "ansible_facts.network_resources.l2_interfaces|symmetric_difference(result.before) == []"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that after dicts were correctly generated
@@ -45,7 +45,7 @@
         - "config|difference(ansible_facts.network_resources.l2_interfaces) == []"
 
   - name: Replace L2 interface configuration with provided configuration (IDEMPOTENT)
-    exos_l2_interfaces: *replaced
+    extreme.exos.exos_l2_interfaces: *replaced
     register: result
 
   - name: Assert that task was idempotent
@@ -53,7 +53,7 @@
       that:
         - "result['changed'] == false"
 
-  - exos_facts:
+  - extreme.exos.exos_facts:
       gather_network_resources: l2_interfaces
 
   - name: Assert that the before dicts were correctly generated

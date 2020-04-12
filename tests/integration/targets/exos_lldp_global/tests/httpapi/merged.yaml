@@ -1,12 +1,12 @@
 ---
 - debug:
-    msg: "START exos_lldp_global merged integration tests on connection={{ ansible_connection }}"
+    msg: "START extreme.exos.exos_lldp_global merged integration tests on connection={{ ansible_connection }}"
 
 - include_tasks: _reset_config.yaml
 
 - block:
   - name: Merge the provided configuration with the exisiting running configuration
-    exos_lldp_global: &merged
+    extreme.exos.exos_lldp_global: &merged
       config:
         interval: 10
         tlv_select:
@@ -32,7 +32,7 @@
         - "{{ merged['after'] == result['after'] }}"
 
   - name: Merge the provided configuration with the existing running configuration (IDEMPOTENT)
-    exos_lldp_global: *merged
+    extreme.exos.exos_lldp_global: *merged
     register: result
 
   - name: Assert that the previous task was idempotent
